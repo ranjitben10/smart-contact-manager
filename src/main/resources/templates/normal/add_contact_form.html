@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Add Contact Form...</title>
+</head>
+<body>
+	<section>
+		<div class="card mr-3">
+			<div class="card-body mr-3">
+				<h1 class="text-center">Add Contact</h1>
+				<div class="container-fluid mt-1">
+					<div class="row">
+						<div class="col-md-8 offset-md-2">
+							<form th:object="${contact}" enctype="multipart/form-data" method="post" th:action="@{/user/process-contact}" class="mt-2">
+								
+								 <div class="input-group">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text"><div><i class="fa fa-plus"></i></div></div>
+							        </div>
+							        <input type="text" class="form-control" id="firstName" th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}" name="name" th:value="${contact.name}" placeholder="Enter Name">
+							        <div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}">
+						    	
+						    		</div>
+      							</div>
+								
+								
+								
+								 <div class="input-group mt-3">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text"><div><i class="fas fa-user-alt"></i></div></div>
+							        </div>
+							        <input type="text" class="form-control" id="secondName" name="secondName" placeholder="Enter Nick Name">
+      							</div>
+      							
+      							
+      							 <div class="input-group mt-3">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text"><div><i class="fas fa-phone"></i></div></div>
+							        </div>
+							        <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number">
+      							</div>
+      							
+      							
+      							<div class="input-group mt-3">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">@</div>
+							        </div>
+							        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
+      							</div>
+      							
+								
+								
+								<div class="input-group mt-3">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text"><div><i class="fa fa-briefcase"></i></div></div>
+							        </div>
+							        <input type="text" class="form-control" id="work" name="work" placeholder="Enter work">
+      							</div>
+      							
+      							
+      							<div class="form-group mt-3">
+      								<textarea placeholder="Enter Contact Description" rows="10" id="description" class="form-control" name="description"></textarea>
+      							</div>
+      							
+      							<div class="custom-file mt-3">
+      							
+      							<input type="file" name="profileImage"   />
+      							
+      							</div>
+      							
+      							<div class ="container text-center">
+      								<button class="btn btn-outline-primary">Save Contact</button>
+      							</div>
+								
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script
+		    type="text/javascript"
+		    src='https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js'
+		    referrerpolicy="origin">
+  		</script>
+  		<script>
+  		tinymce.init({
+  		    selector: '#description',
+  		    
+  		  plugins: [
+  		      'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
+  		      'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime',
+  		      'media', 'table', 'emoticons', 'template', 'help'
+  		    ],
+  		    toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+  		      'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+  		      'forecolor backcolor emoticons | help',
+  		    menu: {
+  		      favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
+  		    },
+  		    menubar: 'favs file edit view insert format tools table help',
+  		    content_css: 'css/content.css'
+  		  });
+  		</script>
+  		<script type="text/javascript">
+			let item = document.getElementById("add-link");
+			item.classList.toggle("active");
+		</script>
+	</section>
+	
+</body>
+</html>
